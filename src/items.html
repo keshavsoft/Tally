@@ -33,7 +33,7 @@
         </header>
 
         <input type="file" id="myfile" name="myfile">
-        <button type="button" class="btn btn-primary" onclick="jFShowData()">
+        <button type="button" class="btn btn-primary" id="ButtonShowId">
             Show
         </button>
 
@@ -42,6 +42,9 @@
                 <tr>
                     <th data-formatter="jFLocalSerialColumn">#</th>
                     <th data-field="ItemName">Item Name</th>
+                    <th data-field="OpeningRate">OpeningRate</th>
+
+
                 </tr>
             </thead>
         </table>
@@ -54,6 +57,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+
+    <script type="module" src="./js/pages/items/EntryFile.js"></script>
 
     <script>
         function jFLocalSerialColumn(value, row, index) {
@@ -83,9 +88,21 @@
                         checkboxes = doc.documentElement.querySelectorAll("STOCKITEM");
 
                         checkboxes.forEach((userItem) => {
-                            ReturnArray.push({
-                                ItemName: userItem.attributes.NAME.value
-                            });
+                            // console.log("aaaaaaaaaaaaa : ", userItem, userItem.querySelector("OPENINGRATE"));
+
+                            let LoopInsideObject = {};
+                            LoopInsideObject.ItemName = userItem.attributes.NAME.value;
+
+                            let LoopInsideRate = userItem.querySelector("OPENINGRATE");
+                            // console.log("aaaaaaaaaaaaa : ", userItem, userItem.querySelector("OPENINGRATE"));
+
+                            if (LoopInsideRate === null === false) {
+                                console.log("aaaaaaaaaaaaa : ", LoopInsideRate, LoopInsideRate.innerHTML);
+
+                                LoopInsideObject.OpeningRate = LoopInsideRate.innerHTML;
+                            };
+
+                            ReturnArray.push(LoopInsideObject);
                         });
 
                         resolve(ReturnArray);
