@@ -26,17 +26,12 @@ const readImage = () => {
                 let checkboxes = doc.documentElement.querySelectorAll("STOCKITEM");
 
                 checkboxes.forEach((userItem) => {
-                    // console.log("aaaaaaaaaaaaa : ", userItem, userItem.querySelector("OPENINGRATE"));
-
                     let LoopInsideObject = {};
                     LoopInsideObject.ItemName = userItem.attributes.NAME.value;
 
                     let LoopInsideRate = userItem.querySelector("OPENINGRATE");
-                    // console.log("aaaaaaaaaaaaa : ", userItem, userItem.querySelector("OPENINGRATE"));
 
                     if (LoopInsideRate === null === false) {
-                        console.log("aaaaaaaaaaaaa : ", LoopInsideRate, LoopInsideRate.innerHTML);
-
                         LoopInsideObject.OpeningRate = LoopInsideRate.innerHTML;
                     };
 
