@@ -8,4 +8,9 @@ import { Popover } from 'bootstrap';
 document.querySelectorAll('[data-bs-toggle="popover"]')
   .forEach(popover => {
     new Popover(popover)
-  })
+  });
+
+Neutralino.init();
+Neutralino.events.on("windowClose", () => {
+  Neutralino.app.exit();
+});

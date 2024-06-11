@@ -110,6 +110,7 @@ export default defineConfig((env) => ({
     plugins: [
         viteStaticCopy({
             targets: [
+                { src: normalizePath(resolve(__dirname, `./NeuResources`)), dest: '' },
             ],
             watch: {
                 reloadPageOnChange: true
