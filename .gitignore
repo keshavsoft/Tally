@@ -1,6 +1,10 @@
 *.xml
+*.log
 
 .DS_Store
 /node_modules/
 /dist/
+/resources/
+/bin/
 .vscode
+

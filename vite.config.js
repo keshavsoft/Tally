@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const root = resolve(__dirname, 'src')
+const outDir = "resources";
 
 const getFiles = () => {
     let files = {}
@@ -19,9 +20,9 @@ const getFiles = () => {
             files[filename.slice(0, -5)] = resolve(root, filename)
         })
     return files
-}
+};
 
-const files = getFiles()
+const files = getFiles();
 
 const getVariables = (mode) => {
     const variables = {}
@@ -48,9 +49,9 @@ const modulesToCopy = {
     flatpickr: true,
     filepond: true,
     "filepond-plugin-file-validate-size": true,
-    "filepond-plugin-file-validate-type": true, 
+    "filepond-plugin-file-validate-type": true,
     "filepond-plugin-image-crop": true,
-    "filepond-plugin-image-exif-orientation": true, 
+    "filepond-plugin-image-exif-orientation": true,
     "filepond-plugin-image-filter": true,
     "filepond-plugin-image-preview": true,
     "filepond-plugin-image-resize": true,
@@ -68,14 +69,14 @@ const modulesToCopy = {
     "toastify-js": false,
     "datatables.net": false,
     "datatables.net-bs5": false,
-    "simple-datatables": true, 
+    "simple-datatables": true,
     jsvectormap: true,
 }
 
 const copyModules = Object.keys(modulesToCopy).map(moduleName => {
     const withDist = modulesToCopy[moduleName]
     return {
-        src: normalizePath(resolve(__dirname, `./node_modules/${moduleName}${withDist ? '/dist' : ''}`)),
+        src: normalizePath(resolve(__dirname, `./node_modules/${moduleName}${withDist ? `/${outDir}` : ''}`)),
         dest: 'assets/extensions',
         rename: moduleName
     }
@@ -85,7 +86,7 @@ build({
     configFile: false,
     build: {
         emptyOutDir: false,
-        outDir: resolve(__dirname, 'dist/assets/compiled/js'),
+        outDir: resolve(__dirname, `${outDir}/assets/compiled/js`),
         lib: {
             name: 'app',
             formats: ['umd'],
@@ -110,7 +111,7 @@ export default defineConfig((env) => ({
         viteStaticCopy({
             targets: [
                 { src: normalizePath(resolve(__dirname, './src/assets/static')), dest: 'assets' },
-                { src: normalizePath(resolve(__dirname, './dist/assets/compiled/fonts')), dest: 'assets/compiled/css' },
+                { src: normalizePath(resolve(__dirname, `./${outDir}/assets/compiled/fonts`)), dest: 'assets/compiled/css' },
                 { src: normalizePath(resolve(__dirname, "./node_modules/bootstrap-icons/bootstrap-icons.svg")), dest: 'assets/static/images' },
                 ...copyModules
             ],
@@ -149,7 +150,7 @@ export default defineConfig((env) => ({
         emptyOutDir: false,
         manifest: true,
         target: "chrome58",
-        outDir: resolve(__dirname, 'dist'),
+        outDir: resolve(__dirname, `${outDir}`),
         rollupOptions: {
             input: files,
             output: {
