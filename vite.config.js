@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const root = resolve(__dirname, 'src')
-const outDir = "resources";
+const outDir = "resources/Tally";
 
 const getFiles = () => {
     let files = {}
@@ -110,10 +110,6 @@ export default defineConfig((env) => ({
     plugins: [
         viteStaticCopy({
             targets: [
-                { src: normalizePath(resolve(__dirname, './src/assets/static')), dest: 'assets' },
-                { src: normalizePath(resolve(__dirname, `./${outDir}/assets/compiled/fonts`)), dest: 'assets/compiled/css' },
-                { src: normalizePath(resolve(__dirname, "./node_modules/bootstrap-icons/bootstrap-icons.svg")), dest: 'assets/static/images' },
-                ...copyModules
             ],
             watch: {
                 reloadPageOnChange: true

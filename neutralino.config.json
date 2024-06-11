@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "defaultMode": "chrome",
   "port": 0,
-  "documentRoot": "/resources/",
+  "documentRoot": "/resources/Tally",
   "url": "/",
   "enableServer": true,
   "enableNativeAPI": true,
@@ -75,7 +75,7 @@
     "binaryName": "Tally",
     "resourcesPath": "/resources/",
     "extensionsPath": "/extensions/",
-    "clientLibrary": "/resources/assets/static/neutralino.js",
+    "clientLibrary": "/NeuResources/neutralino.js",
     "binaryVersion": "5.2.0",
     "clientVersion": "5.2.0"
   }
